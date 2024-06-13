@@ -1,0 +1,125 @@
+Penjelasan Kode
+
+1. Header Files
+#include <iostream>
+#include <stack>
+#include <string>
+#include <iostream>: Untuk input dan output.
+#include <stack>: Untuk menggunakan stack.
+#include <string>: Untuk menggunakan objek string.
+
+2. Fungsi displayMenu
+void displayMenu() {
+    std::cout << "\nPilih operasi yang ingin dilakukan:\n";
+    std::cout << "1. Push (menambahkan buku)\n";
+    std::cout << "2. Pop (menghapus buku teratas)\n";
+    std::cout << "3. Peek (melihat buku teratas)\n";
+    std::cout << "4. isEmpty (cek apakah tumpukan kosong)\n";
+    std::cout << "5. Size (cek jumlah buku dalam tumpukan)\n";
+    std::cout << "6. Exit (keluar)\n";
+}
+Fungsi ini menampilkan menu pilihan operasi kepada pengguna.
+
+3. Fungsi main
+int main() {
+    std::stack<std::string> bookStack;  // Deklarasi stack untuk menyimpan buku
+    int choice;  // Variabel untuk menyimpan pilihan pengguna
+    std::string book;  // Variabel untuk menyimpan nama buku
+Deklarasi stack bookStack untuk menyimpan buku (dalam bentuk string).
+choice untuk menyimpan pilihan pengguna dari menu.
+book untuk menyimpan nama buku yang dimasukkan pengguna.
+
+4. Loop Utama
+    while (true) {  // Loop utama program
+        displayMenu();  // Menampilkan menu kepada pengguna
+        std::cout << "Masukkan pilihan: ";
+        std::cin >> choice;  // Membaca pilihan pengguna
+Loop while (true) digunakan untuk menjalankan program terus-menerus sampai pengguna memilih untuk keluar.
+Menampilkan menu dengan memanggil displayMenu().
+Membaca pilihan pengguna.
+
+5. Switch Case untuk Memilih Operasi
+switch (choice) {  // Memilih operasi berdasarkan pilihan pengguna
+case 1:
+std::cout << "Masukkan nama buku: ";
+std::cin.ignore();  // Membersihkan buffer input agar getline bisa digunakan
+std::getline(std::cin, book);  // Membaca nama buku
+bookStack.push(book);  // Menambahkan buku ke dalam stack
+std::cout << "Buku '" << book << "' telah ditambahkan ke tumpukan.\n";
+break;
+
+Case 1 (Push):
+Meminta pengguna untuk memasukkan nama buku.
+std::cin.ignore(); digunakan untuk membersihkan buffer input agar std::getline bisa digunakan.
+std::getline(std::cin, book); untuk membaca nama buku dari pengguna.
+bookStack.push(book); menambahkan buku ke stack.
+Menampilkan pesan bahwa buku telah ditambahkan.
+
+case 2:
+              if (!bookStack.empty()) {  // Memeriksa apakah stack tidak kosong
+              std::cout << "Buku '" << bookStack.top() << "' telah dihapus dari tumpukan.\n";
+              bookStack.pop();  // Menghapus buku teratas dari stack
+              } else {
+               std::cout << "Tumpukan kosong, tidak ada buku untuk dihapus.\n";
+              }
+              break;
+Case 2 (Pop):
+Memeriksa apakah stack tidak kosong dengan !bookStack.empty().
+Jika tidak kosong, menampilkan buku teratas dan menghapusnya dengan bookStack.pop().
+Jika kosong, menampilkan pesan bahwa stack kosong.
+            
+case 3:
+                if (!bookStack.empty()) {  // Memeriksa apakah stack tidak kosong
+                    std::cout << "Buku teratas adalah: " << bookStack.top() << "\n";  // Menampilkan buku teratas
+                } else {
+                    std::cout << "Tumpukan kosong.\n";
+                }
+                break;
+Case 3 (Peek):
+Memeriksa apakah stack tidak kosong.
+Jika tidak kosong, menampilkan buku teratas dengan bookStack.top().
+Jika kosong, menampilkan pesan bahwa stack kosong.
+
+            case 4:
+                if (bookStack.empty()) {  // Memeriksa apakah stack kosong
+                    std::cout << "Tumpukan kosong.\n";
+                } else {
+                    std::cout << "Tumpukan tidak kosong.\n";
+                }
+                break;
+Case 4 (isEmpty):
+Memeriksa apakah stack kosong dengan bookStack.empty().
+Menampilkan pesan sesuai kondisi stack (kosong atau tidak kosong).
+
+            case 5:
+                std::cout << "Jumlah buku dalam tumpukan: " << bookStack.size() << "\n";  // Menampilkan jumlah buku dalam stack
+                break;
+Case 5 (Size):
+Menampilkan jumlah buku dalam stack dengan bookStack.size().
+cpp
+Salin kode
+            
+             case 6:
+                std::cout << "Keluar dari program.\n";
+                return 0;  // Keluar dari program
+Case 6 (Exit):
+Menampilkan pesan keluar dan mengakhiri program dengan return 0.
+
+            default:
+                std::cout << "Pilihan tidak valid, coba lagi.\n";  // Menangani pilihan yang tidak valid
+        }
+    }
+    return 1;  // Mengembalikan nilai 1 sebagai indikasi bahwa program berakhir dengan normal (tidak akan pernah tercapai karena return 0 di case 6)
+}
+Default:
+
+Menangani pilihan yang tidak valid dan meminta pengguna untuk mencoba lagi.
+return 1; di luar loop tidak akan pernah tercapai karena return 0 pada case 6 akan menghentikan program.
+
+Fungsi yang Dijelaskan
+displayMenu(): Menampilkan menu pilihan operasi kepada pengguna.
+main(): Fungsi utama yang mengandung logika program untuk mengelola stack buku berdasarkan input pengguna.
+
+
+
+
